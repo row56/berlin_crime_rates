@@ -1,0 +1,1203 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Finetuning of a Plot</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'headline';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Finetuning of the Berlin District Criminality Time Series Plot
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Finetuning of the Berlin District Criminality Time Series Plot</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-1_introduction">1. Introduction</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2_first_attempt">2. First attempt: Heatmap</a><ul class="visible nav section-nav flex-column">
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2.1_adjust_colormap_range">2.1. Adjusting the Colormap Scale Range</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2.2_custom_colormap">2.2. Creating a Custom Colormap</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2.3_disadvantages">2.3. Identifying Disadvantages</a></li>
+</ul>
+</li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-3_further_attempts">3. Further Attempts: Scatterplot and Barplot</a><ul class="visible nav section-nav flex-column">
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-3.1_second_attempt">3.1. Second Attempt: Scatterplot</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-3.2_third_attempt">3.2. Third Attempt: Barplots</a></li>
+</ul>
+</li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4_final_plot">4. Final Plot</a><ul class="visible nav section-nav flex-column">
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4.1_colormap_creation">4.1. Colormap Creation</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4.2_feature_selection">4.2. Feature selection: PCA</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4.3_final_plots">4.3. Final Plots for Fire Crimes, Car Thefts, Burglary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-refs">5. References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="finetuning-of-the-berlin-district-criminality-time-series-plot">
+<h1>Finetuning of the Berlin District Criminality Time Series Plot<a class="headerlink" href="#finetuning-of-the-berlin-district-criminality-time-series-plot" title="Permalink to this heading">#</a></h1>
+<p>by Robert Wienröder</p>
+<div class="toctree-wrapper compound">
+<span id="document-1_introduction"></span><section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h2><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<section id="outline">
+<h3><span class="section-number">1.1. </span>Outline<a class="headerlink" href="#outline" title="Permalink to this heading">#</a></h3>
+<p>This report showcases the process of creating and refining a time-series chart that presents different crime rates in various districts of Berlin. The process involved several attempts using different visualization techniques. After identifying the shortcomings of each version, the final plot was created. The chart is designed to be easily understandable, making it suitable for a broad audience interested in crime statistics for Berlin neighborhoods. This audience includes Berlin residents, policymakers, sociologists, and anyone curious about the changing patterns of crime across different areas of the city.</p>
+</section>
+<section id="data-selection-preparation">
+<h3><span class="section-number">1.2. </span>Data Selection &amp; Preparation<a class="headerlink" href="#data-selection-preparation" title="Permalink to this heading">#</a></h3>
+<p>Our data selection methodology is comprehensively explained in the group report. The visualizations presented in this report predominantly rely on the “Kriminalitätsatlas” dataset, which proved to be highly practical and straightforward to preprocess. This dataset encompasses the past decade’s data, which has been restructured to align with the updated LOR divisions. The other three datasets used were called “Umweltgerechtigkeit”, “Monitoring Soziale Stadtentwicklung” and “LOR Planungsräume”. Additional information on this process is available in the group report.</p>
+</section>
+<section id="remark">
+<h3><span class="section-number">1.3. </span>Remark<a class="headerlink" href="#remark" title="Permalink to this heading">#</a></h3>
+<p>Certain plots were not displayed as intended in the HTML file, appearing as static images without animations. This made it necessary to export these graphics as separate files and embed them directly into the html file. To ensure consistent visual presentation, this was done for all relevant visualizations (which does not include the depiction of the colormaps). The code remains accessible for review, yielding the same results one can see in the embedded images. Typical environments for Python and R can be used to yield those images as outputs.</p>
+</section>
+</section>
+<span id="document-2_first_attempt"></span><section class="tex2jax_ignore mathjax_ignore" id="first-attempt-heatmap">
+<h2><span class="section-number">2. </span>First attempt: Heatmap<a class="headerlink" href="#first-attempt-heatmap" title="Permalink to this heading">#</a></h2>
+<p>The primary objective for generating the plot consisted in illustrating the temporal development of crime rates across the 12 districts of Berlin to facilitate comparative analysis. Additionally, the aim was to explore variations in the rates of different types of crimes in relation to the overall crime rate.</p>
+<p>The initial approach involved creating an animated heatmap plot, depicting a geographical map of Berlin. Different colors were employed to represent the count of crimes within each LOR sub-district. For this purpose, geospatial data from the “LOR Planungsräume” dataset was used.</p>
+<div class="toctree-wrapper compound">
+<span id="document-2.1_adjust_colormap_range"></span><section class="tex2jax_ignore mathjax_ignore" id="adjusting-the-colormap-scale-range">
+<h3><span class="section-number">2.1. </span>Adjusting the Colormap Scale Range<a class="headerlink" href="#adjusting-the-colormap-scale-range" title="Permalink to this heading">#</a></h3>
+<p>Initially, a suitable colormap for the animated plot was sought. After considering various options, three colormaps were found to yield the most favorable outcomes for the intended purpose: “CMRmap,” “inferno,” and “Spectral.” To modify the color progression, the “Spectral” colormap was reversed using the “Spectral_r” variant. This alteration facilitated the transition from red for lower values to blue for higher values.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">CMRcolors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;CMRmap&quot;</span><span class="p">)</span>
+<span class="n">CMRmap</span> <span class="o">=</span> <span class="n">mcolors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;CMRmap&#39;</span><span class="p">,</span> <span class="n">CMRcolors</span><span class="p">);</span> <span class="n">CMRmap</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>CMRmap</strong> </div><div class="cmap"><img alt="CMRmap colormap" title="CMRmap" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAFXRFWHRUaXRsZQBDTVJtYXAgY29sb3JtYXBWnHtIAAAAG3RFWHREZXNjcmlwdGlvbgBDTVJtYXAgY29sb3JtYXAfC2OsAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My43LjIsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcfQk4eAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZzHk0TkAAAHhSURBVHic7dbBUsIwGIXR/H0YNz6obw1uBCZpY6FUN/ecTadpEhoYna8+P76urbVWrVp/bW17/Pfny+2+ZuuP7ruzbvp5b+47Pq9nz9P67+Pg97DU9WefS39djff3Vdvjy2z8dl+XzfGajM/fZ2d8te+L6yfnr71z7rzPeP5ajffvXdV/7v1+eN7G+av1B9fVZVjfj7en120/f6w/69zPff7Rc18ff9D9dRhfzZus+7959d77nz1vfD4712pebc+7/4Ne3ry+uM9y0j5nvc+f7XNs/e1nAgCCCAAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACDQNxAcdLavNvkUAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#2b2688ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #2b2688ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#e6e172ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #e6e172ff;"></div></div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coolwarmcolors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;coolwarm&quot;</span><span class="p">)</span>
+<span class="n">coolwarm</span> <span class="o">=</span> <span class="n">mcolors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">coolwarmcolors</span><span class="p">);</span> <span class="n">coolwarm</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>coolwarm</strong> </div><div class="cmap"><img alt="coolwarm colormap" title="coolwarm" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAF3RFWHRUaXRsZQBjb29sd2FybSBjb2xvcm1hcPHW9i4AAAAddEVYdERlc2NyaXB0aW9uAGNvb2x3YXJtIGNvbG9ybWFw2KgRBwAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuNy4yLCBodHRwczovL21hdHBsb3RsaWIub3JnH0JOHgAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My43LjIsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcx5NE5AAAB30lEQVR4nO3WSXKbQABA0SaXzVV82VwBvIhRSlgtkFMZqv57G4qmB2D1l+9vP7YxxliWMX5el/H8/t+Mj318/B/v8/fG7z5/LMt2uJ88P4yPL66bn3c/f3xx3fn59+um5/zx/3Scv91dx36/jcfjk+uvdZPx/T1m607XX9x3u7pu8vzw3dfXzZ6Pp+vP/tu+723/7Ti+vjb/dN7z/T7Nn85bL867+p7ri+fP5q3P55/st1+3/X5dH4/v9+tk3avzPs75tP/t+W/uf5v3/Htm57z+Ho+/53T/yfd8GwBAjgAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAEPQOxGUeKSSyfF0AAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#6788eeff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #6788eeff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#e26952ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #e26952ff;"></div></div></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Spectralcolors</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Spectral_r&quot;</span><span class="p">)</span>
+<span class="n">Spectral</span> <span class="o">=</span> <span class="n">mcolors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;Spectral_r&#39;</span><span class="p">,</span> <span class="n">Spectralcolors</span><span class="p">);</span> <span class="n">Spectral</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>Spectral_r</strong> </div><div class="cmap"><img alt="Spectral_r colormap" title="Spectral_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGXRFWHRUaXRsZQBTcGVjdHJhbF9yIGNvbG9ybWFwkgoEDgAAAB90RVh0RGVzY3JpcHRpb24AU3BlY3RyYWxfciBjb2xvcm1hcOgixUAAAAAwdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZx9CTh4AAAAydEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuNy4yLCBodHRwczovL21hdHBsb3RsaWIub3JnMeTROQAAAgBJREFUeJzt1k1uwyAURtFnb67L7CK6v9BJTGViaudn9p0ziQwYSBVVd/n6/mlVVevaqqpqWaqqqtb+2YbnGtbd59dx/vi96Xx//8V7rLP5i/dYx/k2rDu5x3oyf3aPyf3v2/bzl4fxdriu71snz5Nz3t3vY+e+/b2G39PJfpfX1aBt420yfmxpbTJ+fMA4/vY97ufP7zdsML3fyfrj4b97fup7bX/P223/3Mfb/XEbv+3GZ+vr6vqL55+tb6+e//L622T8//3a5fP3j/17bs/9+Das3/8+PvZ+v39dW/9w3v795/cd7tnXP3mvh/XDPU/O2/7PAQBBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABDoFymu8/vYyBPFAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#47a0b3ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #47a0b3ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#e2514aff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #e2514aff;"></div></div></div></div>
+</div>
+<p>The first version of the animated plot revealed a very homogeneous appearance, except for the central region, raising suspicion of the presence of extreme outliers. The used colormap in this example was “Spectral_r”.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import os</span>
+
+<span class="c1">#output_dir = &quot;output_heatmaps&quot;  # Create a directory to save the output heatmaps</span>
+<span class="c1">#os.makedirs(output_dir, exist_ok=True)</span>
+
+<span class="n">crime_dev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../data/05_kriminalitaet_2013_bis_2022_hz.pkl&quot;</span><span class="p">)</span>
+
+<span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">])</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">])</span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2023</span><span class="p">):</span>
+    <span class="n">year_df</span> <span class="o">=</span> <span class="n">crime_dev</span><span class="p">[</span><span class="n">crime_dev</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">]</span>
+    
+    <span class="n">straftaten_gesamt_df</span> <span class="o">=</span> <span class="n">year_df</span><span class="p">[[</span><span class="s2">&quot;PLR_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]]</span>
+    <span class="n">straftaten_gesamt_df</span> <span class="o">=</span> <span class="n">straftaten_gesamt_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">:</span> <span class="s2">&quot;Crimes per 100.000 residents&quot;</span><span class="p">,</span>
+                                                                <span class="s2">&quot;PLR_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;Area&quot;</span><span class="p">})</span>
+    <span class="n">straftaten_gesamt_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">straftaten_gesamt_df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">straftaten_gesamt_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;Crimes per 100.000 residents&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Spectral_r&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+
+    <span class="c1">#ax.set_title(f&quot;Crimes per 100,000 residents per district \n in {year}&quot;)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Crimes per 100,000 residents </span><span class="se">\n</span><span class="s2">in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+    <span class="c1">#output_filename = os.path.join(output_dir, f&quot;heatmap_{year}.png&quot;)</span>
+    <span class="c1">#plt.savefig(output_filename, dpi=500)  # Save the figure as an image</span>
+
+    <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-dev-bad">
+<a class="reference internal image-reference" href="_images/heatmap_bad.gif"><img alt="_images/heatmap_bad.gif" src="_images/heatmap_bad.gif" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Temporal development (2013-2022) of crimes per 100,000 residents
+per Berlin LOR sub-district - heatmap with default colormap and default colormap scale range</span><a class="headerlink" href="#fig-crime-dev-bad" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Boxplots were employed to validate the assumption, confirming the presence of significant outliers. Subsequently, for the second version, various possible maximum values for the color scale were examined, ranging from 30,000 to 50,000. Values above 30,000 still exhibited considerable homogeneity in the heatmap, while values below 50,000 made distinctions between a range of different values impossible.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;darkgrid&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">crime_dev</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;RdYlGn_r&quot;</span><span class="p">)</span>
+<span class="c1">#plt.title(&quot;Number of crimes vs. year&quot;, fontsize=22)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Crimes per 100,000 residents&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1">#plt.savefig(&quot;boxplots.svg&quot;, bbox_inches=&quot;tight&quot;, dpi=500)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-boxplots">
+<a class="reference internal image-reference" href="_images/boxplots.svg"><img alt="_images/boxplots.svg" height="600px" src="_images/boxplots.svg" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.2 </span><span class="caption-text">Temporal development (2013-2022) of crimes per 100,000 residents
+per Berlin LOR sub-district - boxplots with default colormap</span><a class="headerlink" href="#fig-crime-boxplots" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<span id="document-2.2_custom_colormap"></span><section class="tex2jax_ignore mathjax_ignore" id="creating-a-custom-colormap">
+<h3><span class="section-number">2.2. </span>Creating a Custom Colormap<a class="headerlink" href="#creating-a-custom-colormap" title="Permalink to this heading">#</a></h3>
+<p>To address this issue, the color scale’s maximum value was reset to the actual maximum of the dataset. Additionally, a custom color map was created, which accentuates differences at the lower end of the scale, taking into account the high diversity of values in this range.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">tab10</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)</span>
+<span class="n">set1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;#000099&quot;</span><span class="p">,</span> <span class="n">set1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">tab10</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">set1</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;#99cc00&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffcc00&quot;</span><span class="p">,</span> <span class="n">set1</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;#ff0000&quot;</span><span class="p">,</span> <span class="s2">&quot;#cc0000&quot;</span><span class="p">,</span> <span class="s2">&quot;#990000&quot;</span><span class="p">,</span> <span class="s2">&quot;#660000&quot;</span><span class="p">,</span> <span class="s2">&quot;#000000&quot;</span><span class="p">]</span>
+<span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+<span class="n">custom_cmap</span> <span class="o">=</span> <span class="n">mcolors</span><span class="o">.</span><span class="n">LinearSegmentedColormap</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="s1">&#39;custom_colormap&#39;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">colors</span><span class="p">)))</span>
+<span class="n">custom_cmap</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>custom_colormap</strong> </div><div class="cmap"><img alt="custom_colormap colormap" title="custom_colormap" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAHnRFWHRUaXRsZQBjdXN0b21fY29sb3JtYXAgY29sb3JtYXB5JmvcAAAAJHRFWHREZXNjcmlwdGlvbgBjdXN0b21fY29sb3JtYXAgY29sb3JtYXCzmoKzAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My43LjIsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcfQk4eAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjcuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZzHk0TkAAAGqSURBVHic7dbNTpNhFEbRY62RKkS9fG/QeAU1IG0dvJ8DEEJiwoS91uTp6c+XDve7me+XmZmPX/fzYL89fV89undf1t5df1h7s+7bm+2+Xvf5cJqZmc+nHzMz82nbf+7zz3Xvj9v+Wvv++PT7+4fvH3b36//Nctj26oV9/P2X7t3v7cXdK+/xdfdyu/Z+3saetj2/kf3r8sw+9/n//s5zPddzO8/dDQCQIwAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABP0BNN/Mf3hpRKIAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#000099ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #000099ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#000000ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #000000ff;"></div></div></div></div>
+</div>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#import os</span>
+
+<span class="c1">#output_dir = &quot;output_heatmaps&quot;  # Create a directory to save the output heatmaps</span>
+<span class="c1">#os.makedirs(output_dir, exist_ok=True)</span>
+
+<span class="n">crime_dev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../data/05_kriminalitaet_2013_bis_2022_hz.pkl&quot;</span><span class="p">)</span>
+
+<span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">max_value</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">])</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">crime_dev</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">])</span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">min_value</span><span class="p">,</span> <span class="n">max_value</span>
+
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2023</span><span class="p">):</span>
+    <span class="n">year_df</span> <span class="o">=</span> <span class="n">crime_dev</span><span class="p">[</span><span class="n">crime_dev</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">]</span>
+    
+    <span class="n">straftaten_gesamt_df</span> <span class="o">=</span> <span class="n">year_df</span><span class="p">[[</span><span class="s2">&quot;PLR_NAME&quot;</span><span class="p">,</span> <span class="s2">&quot;geometry&quot;</span><span class="p">,</span> <span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]]</span>
+    <span class="n">straftaten_gesamt_df</span> <span class="o">=</span> <span class="n">straftaten_gesamt_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">:</span> <span class="s2">&quot;Crimes per 100.000 residents&quot;</span><span class="p">,</span>
+                                                                <span class="s2">&quot;PLR_NAME&quot;</span><span class="p">:</span> <span class="s2">&quot;Area&quot;</span><span class="p">})</span>
+    <span class="n">straftaten_gesamt_df</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span><span class="n">straftaten_gesamt_df</span><span class="p">,</span> <span class="n">geometry</span><span class="o">=</span><span class="s2">&quot;geometry&quot;</span><span class="p">)</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">straftaten_gesamt_df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;Crimes per 100.000 residents&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">custom_cmap</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">)</span>
+
+    <span class="c1">#ax.set_title(f&quot;Crimes per 100,000 residents \nper district in {year}&quot;, fontsize=20, color=&quot;blue&quot;, fontweight=&quot;bold&quot;)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Crimes per 100,000 residents </span><span class="se">\n</span><span class="s2"> in </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">600</span><span class="p">)</span>
+    
+    <span class="c1">#output_filename = os.path.join(output_dir, f&quot;heatmap_{year}.png&quot;)</span>
+    <span class="c1">#plt.savefig(output_filename, dpi=500)  # Save the figure as an image</span>
+
+    <span class="n">display</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">())</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-dev-final">
+<a class="reference internal image-reference" href="_images/heatmap_final.gif"><img alt="_images/heatmap_final.gif" src="_images/heatmap_final.gif" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2.3 </span><span class="caption-text">Temporal development (2013-2022) of crimes per 100,000 residents
+per Berlin LOR sub-district - heatmap with custom colormap and default colormap scale range</span><a class="headerlink" href="#fig-crime-dev-final" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<span id="document-2.3_disadvantages"></span><section class="tex2jax_ignore mathjax_ignore" id="identifying-disadvantages">
+<h3><span class="section-number">2.3. </span>Identifying Disadvantages<a class="headerlink" href="#identifying-disadvantages" title="Permalink to this heading">#</a></h3>
+<p>Regrettably, the finished plot lacked the interactivity present in its static predecessor. As a result, the animated plot offered a general overview of crime rate development in Berlin’s areas but with limited informativeness and meaningfulness. The inability to view the entire development at once further hindered comprehension.</p>
+<p>Another significant problem in this representation was the distortion caused by extremely high crime rates in certain areas. For instance, the government district emerged as the most extreme outlier, exhibiting relatively high absolute numbers, but mainly due to its sparse population. Consequently, crimes per 100,000 residents appeared exceptionally elevated, misrepresenting the actual crime incidence. Addressing this issue proved challenging since using absolute numbers could bias the results towards districts with larger populations.</p>
+<p>Furthermore, the LOR geodata represented the smallest units, while crime numbers pertained to higher-level units that combined several of the smallest units. Despite efforts to merge multipolygons, difficulties were encountered, so the same relative crime numbers for all sub-districts were used. This portrayal leads viewers to believe that sub-districts were independent entities with individual crime statistics, thereby introducing a misleading aspect to the map.</p>
+</section>
+</div>
+</section>
+<span id="document-3_further_attempts"></span><section class="tex2jax_ignore mathjax_ignore" id="further-attempts-scatterplot-and-barplot">
+<h2><span class="section-number">3. </span>Further Attempts: Scatterplot and Barplot<a class="headerlink" href="#further-attempts-scatterplot-and-barplot" title="Permalink to this heading">#</a></h2>
+<p>Therefore, alternative approaches were explored. This section briefly describes two unsuccessful attempts before arriving at the final time series plot.</p>
+<div class="toctree-wrapper compound">
+<span id="document-3.1_second_attempt"></span><section class="tex2jax_ignore mathjax_ignore" id="second-attempt-scatterplot">
+<h3><span class="section-number">3.1. </span>Second Attempt: Scatterplot<a class="headerlink" href="#second-attempt-scatterplot" title="Permalink to this heading">#</a></h3>
+<p>For the second attempt, a scatterplot was used, representing crime rates versus years. The sub-districts were color-coded using 12 different colors, each corresponding to the district it belongs to. Although this plot displayed all the information at once and provided a legend for clarity, it turned out to be chaotic and unsuitable for conveying the intended message. Of course the legend and the colormap could have been improved, but because of the obvious deficiencies of the plot no further adjustments were made here.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">crime_dev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../data/05_kriminalitaet_2013_bis_2022_hz.pkl&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the x and y features</span>
+<span class="n">x_feature</span> <span class="o">=</span> <span class="s2">&quot;Year&quot;</span>
+<span class="n">y_feature</span> <span class="o">=</span> <span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span>
+
+<span class="c1"># Create a scatter plot</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">crime_dev</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">x_feature</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y_feature</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;BEZ&quot;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span>
+<span class="p">)</span>
+
+<span class="c1"># Set the plot title and labels</span>
+<span class="c1">#ax.set_title(&quot;{} \nvs {}&quot;.format(y_feature, x_feature), fontsize=14)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">x_feature</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Crimes per 100,000 residents&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set the background color to light gray</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
+
+<span class="c1"># Customize the grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Set the tick color and labels to gray</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">colors</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the spines color to white</span>
+<span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">spine</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="c1"># Increase the figure dpi for a sharper image</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;scatter_plot.png&quot;</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s2">&quot;tight&quot;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-dev-scatter">
+<a class="reference internal image-reference" href="_images/scatterplot.png"><img alt="_images/scatterplot.png" src="_images/scatterplot.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Scatterplot of crime rates for different years and Berlin LOR districts</span><a class="headerlink" href="#fig-crime-dev-scatter" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<span id="document-3.2_third_attempt"></span><section class="tex2jax_ignore mathjax_ignore" id="third-attempt-barplots">
+<h3><span class="section-number">3.2. </span>Third Attempt: Barplots<a class="headerlink" href="#third-attempt-barplots" title="Permalink to this heading">#</a></h3>
+<p>The third approach involved creating an animated series of bar plots. The numbers for sub-districts were aggregated into their respective districts, simplifying the process due to the available data. This new plot enhanced clarity and understandability, as the districts were not only differentiated by color but also represented as distinct bars. Overemphasized sub-districts, like the government district, were somewhat leveled out by incorporating them into the relative numbers for the entire district. However, this depiction suffered from the same limitation as the first attempt depicted in <a class="reference internal" href="headline.html#fig-crime-dev-final"><span class="std std-numref">Fig. 2.3</span></a>, as it didn’t allow the simultaneous viewing of the entire development.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1">#import os</span>
+
+<span class="c1">#output_dir = &quot;output_heatmaps&quot;  # Create a directory to save the output heatmaps</span>
+<span class="c1">#os.makedirs(output_dir, exist_ok=True)</span>
+
+<span class="n">bezirkskriminalitaet</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../data/08_kriminalitaet_auf_bezirksebene_2013_bis_2022.pkl&quot;</span><span class="p">)</span>
+<span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;BEZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;LOR-Schlüssel (Bezirksregion)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Set the maximum value for the slider</span>
+<span class="n">max_year</span> <span class="o">=</span> <span class="mi">2022</span>
+<span class="n">min_year</span> <span class="o">=</span> <span class="mi">2013</span>
+
+<span class="c1"># Calculate the maximum crime value across all years to set a common y-axis limit</span>
+<span class="n">max_crime_value</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_map</span><span class="p">(</span><span class="n">year</span><span class="p">):</span>
+    <span class="n">year_df</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">year</span><span class="p">]</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Assign different colors to each bar</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">tab20</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">year_df</span><span class="p">)))</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">year_df</span><span class="p">[</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">],</span> <span class="n">year_df</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;District&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Crimes per 100,000 residents&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_crime_value</span><span class="o">+</span><span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Set a common y-axis limit for all years</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Add the grid in the background</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">gcf</span><span class="p">()</span><span class="o">.</span><span class="n">set_dpi</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+    <span class="c1">#output_filename = os.path.join(output_dir, f&quot;heatmap_{year}.png&quot;)</span>
+    <span class="c1">#plt.savefig(output_filename, dpi=500)  # Save the figure as an image</span>
+
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Create the animation</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2023</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_map</span><span class="p">(</span><span class="n">year</span><span class="p">)</span>
+
+    <span class="n">display</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+    <span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1">#time.sleep(0.4)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-dev-barplot">
+<a class="reference internal image-reference" href="_images/barplots.gif"><img alt="_images/barplots.gif" src="_images/barplots.gif" style="height: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Temporal development (2013-2022) of crimes per 100,000 residents
+per Berlin districts - barplots</span><a class="headerlink" href="#fig-crime-dev-barplot" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</div>
+</section>
+<span id="document-4_final_plot"></span><section class="tex2jax_ignore mathjax_ignore" id="final-plot">
+<h2><span class="section-number">4. </span>Final Plot<a class="headerlink" href="#final-plot" title="Permalink to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<span id="document-4.1_colormap_creation"></span><section class="tex2jax_ignore mathjax_ignore" id="colormap-creation">
+<h3><span class="section-number">4.1. </span>Colormap Creation<a class="headerlink" href="#colormap-creation" title="Permalink to this heading">#</a></h3>
+<p>The final time series line plot combined the advantages of the previous attempts. All information was visible at once, presented in a clean and easily interpretable manner. Nevertheless, it introduced a new challenge: Given the close proximity and occasional overlap of lines, conventional color maps were unsuitable. Sequential color maps, previously used for the animated heatmap, were replaced by qualitative color maps. Distinct color maps were extensively tested, aiming for 12 distinct colors, one for each district. However, available options such as “Set1” or “tab10” offered only 9 or 10 colors, respectively. The “Paired” color map in matplotlib provided exactly 12 colors, but it emphasized dark and saturated colors excessively, which did not align with my intentions.</p>
+<p>After thorough deliberation, 12 colors were manually selected from <a class="reference external" href="https://www.colorhexa.com/web-safe-colors">https://www.colorhexa.com/web-safe-colors</a> and also from existing colormaps, to create a custom color map.</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set1:&quot;</span><span class="p">)</span>
+<span class="n">set1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span>
+<span class="n">set1</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Set1:
+</pre></div>
+</div>
+<div class="output text_html"><svg  width="495" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#e41a1c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#377eb8;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#4daf4a;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#984ea3;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#ff7f00;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#ffff33;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#a65628;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#f781bf;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#999999;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tab10:&quot;</span><span class="p">)</span>
+<span class="n">tab10</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)</span>
+<span class="n">tab10</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tab10:
+</pre></div>
+</div>
+<div class="output text_html"><svg  width="550" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#1f77b4;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#ff7f0e;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#2ca02c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#d62728;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#9467bd;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#8c564b;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#e377c2;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#7f7f7f;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#bcbd22;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="495" y="0" width="55" height="55" style="fill:#17becf;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Paired:&quot;</span><span class="p">)</span>
+<span class="n">Paired</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Paired&quot;</span><span class="p">)</span>
+<span class="n">Paired</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Paired:
+</pre></div>
+</div>
+<div class="output text_html"><svg  width="660" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#a6cee3;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#1f78b4;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#b2df8a;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#33a02c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#fb9a99;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#e31a1c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#fdbf6f;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#ff7f00;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#cab2d6;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="495" y="0" width="55" height="55" style="fill:#6a3d9a;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="550" y="0" width="55" height="55" style="fill:#ffff99;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="605" y="0" width="55" height="55" style="fill:#b15928;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;My own palette:&quot;</span><span class="p">)</span>
+<span class="n">qualitative_palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">([</span><span class="n">set1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;#000099&quot;</span><span class="p">,</span> <span class="n">set1</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;#ff66ff&quot;</span><span class="p">,</span> <span class="s2">&quot;#006600&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffcc00&quot;</span><span class="p">,</span> <span class="s2">&quot;#000000&quot;</span><span class="p">,</span> <span class="n">tab10</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">tab10</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">set1</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="s2">&quot;#00cc00&quot;</span><span class="p">,</span> <span class="s2">&quot;#660066&quot;</span><span class="p">])</span>
+<span class="n">qualitative_palette</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>My own palette:
+</pre></div>
+</div>
+<div class="output text_html"><svg  width="660" height="55"><rect x="0" y="0" width="55" height="55" style="fill:#e41a1c;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="55" y="0" width="55" height="55" style="fill:#000099;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="110" y="0" width="55" height="55" style="fill:#ff7f00;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="165" y="0" width="55" height="55" style="fill:#ff66ff;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="220" y="0" width="55" height="55" style="fill:#006600;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="275" y="0" width="55" height="55" style="fill:#ffcc00;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="330" y="0" width="55" height="55" style="fill:#000000;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="385" y="0" width="55" height="55" style="fill:#17becf;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="440" y="0" width="55" height="55" style="fill:#8c564b;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="495" y="0" width="55" height="55" style="fill:#999999;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="550" y="0" width="55" height="55" style="fill:#00cc00;stroke-width:2;stroke:rgb(255,255,255)"/><rect x="605" y="0" width="55" height="55" style="fill:#660066;stroke-width:2;stroke:rgb(255,255,255)"/></svg></div></div>
+</div>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bezirkskriminalitaet</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../data/08_kriminalitaet_auf_bezirksebene_2013_bis_2022.pkl&quot;</span><span class="p">)</span>
+<span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;BEZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;LOR-Schlüssel (Bezirksregion)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1"># Convert &quot;Straftaten \n-insgesamt-&quot; column to integers</span>
+<span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Group the data by &quot;Bezeichnung (Bezirksregion)&quot; and &quot;Year&quot; and sum the &quot;Straftaten \n-insgesamt-&quot; values</span>
+<span class="n">grouped_data</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">])[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Create a categorical color palette with unique colors for each category</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">num_categories</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span>
+<span class="c1">#color_palette = sns.color_palette(&quot;Paired&quot;, num_categories)</span>
+<span class="c1">#cmap = ListedColormap(color_palette)</span>
+
+<span class="c1"># Create the line plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Iterate over the unique values in the &quot;Bezeichnung (Bezirksregion)&quot; column</span>
+<span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">qualitative_palette</span><span class="p">):</span>
+    <span class="c1"># Filter the data for the current category</span>
+    <span class="n">category_data</span> <span class="o">=</span> <span class="n">grouped_data</span><span class="p">[</span><span class="n">grouped_data</span><span class="p">[</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">category</span><span class="p">]</span>
+    
+    <span class="c1"># Plot the line for the current category</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">category_data</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span> <span class="n">category_data</span><span class="p">[</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Set the plot title, labels, and legend</span>
+<span class="c1">#plt.title(&quot;Temporal development (2013-2022) of crime numbers \nper 100,000 residents split by Berlin districts&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Crimes per 100,000 residents&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Districts&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Get all unique years in the data</span>
+<span class="n">unique_years</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Set the x-ticks to be all unique years</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">unique_years</span><span class="p">)</span>
+
+<span class="c1"># Disable scientific notation on the y-axis</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the background color to gray</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
+<span class="c1"># Add a grid</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1">#plt.savefig(&quot;scatter_plot.svg&quot;, bbox_inches=&quot;tight&quot;, dpi=500)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-dev-curves">
+<a class="reference internal image-reference" href="_images/overall_crimes.png"><img alt="_images/overall_crimes.png" src="_images/overall_crimes.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">Temporal development (2013-2022) of crimes per 100,000 residents
+per Berlin districts - curves plot with custom colormap</span><a class="headerlink" href="#fig-crime-dev-curves" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Additional design choices were implemented to enhance the final plot:</p>
+<ul class="simple">
+<li><p>To improve the clarity of individual lines, the linewidth was increased to 5.</p></li>
+<li><p>The axis ticks and labels were adjusted to ensure that each year is distinctly represented, improving overall legibility.</p></li>
+<li><p>The legend was repositioned to the upper-right corner and resized slightly to minimize its impact on line visibility. Furthermore, it was given a partial transparency effect, ensuring that lines remain visible even when overlapping with the legend.</p></li>
+<li><p>For aesthetic considerations, the background color was set to light gray, accompanied by the addition of a white grid pattern to enhance overall readability</p></li>
+</ul>
+</section>
+<span id="document-4.2_feature_selection"></span><section class="tex2jax_ignore mathjax_ignore" id="feature-selection-pca">
+<h3><span class="section-number">4.2. </span>Feature selection: PCA<a class="headerlink" href="#feature-selection-pca" title="Permalink to this heading">#</a></h3>
+<p>In the final phase of the study, the goal was not only to create a time series plot representing the overall crime rates in the 12 districts of Berlin over the past decade, but also to demonstrate the trend for various types of crimes to identify noteworthy differences. However, creating and comparing 20 individual plots would have been quite a complex task.</p>
+<p>To address this, the mean value of each crime feature for each district over the last 10 years was computed. Subsequently, a Principal Component Analysis (PCA) was conducted with these mean values, leading to the creation of a biplot. The biplot revealed that most crime features showed similarities, while car theft, fire crimes and burglary appeared to be distinct from the others, making them especially interesting for further investigation.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Change the directory to where the data is stored</span>
+<span class="nf">setwd</span><span class="p">(</span><span class="s">&quot;/Users/robert/Documents/Master Data Science/2. Semester/Data Visualization/PROJECT/VisuProj23&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">read.csv</span><span class="p">(</span><span class="s">&quot;data/bezirkskriminalitaet_average.csv&quot;</span><span class="p">)</span>
+<span class="nf">row.names</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="o">$</span><span class="n">Bezirk</span>
+<span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="p">[,</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">19</span><span class="p">)]</span>
+
+<span class="c1"># Perform PCA</span>
+<span class="n">one_prcomp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">prcomp</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">scale.</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="n">PCs_prcomp</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">one_prcomp</span><span class="o">$</span><span class="n">x</span>
+<span class="n">PCvariances</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">one_prcomp</span><span class="o">$</span><span class="n">sdev</span><span class="o">^</span><span class="m">2</span>
+
+<span class="c1"># Create a biplot</span>
+<span class="nf">biplot</span><span class="p">(</span><span class="n">one_prcomp</span><span class="p">,</span><span class="w"> </span><span class="n">pc.biplot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">       </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PC1, variance &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">PCvariances</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">PCvariances</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">),</span>
+<span class="w">       </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PC2, variance &quot;</span><span class="p">,</span><span class="w"> </span><span class="nf">round</span><span class="p">(</span><span class="n">PCvariances</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">PCvariances</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%&quot;</span><span class="p">),</span>
+<span class="w">       </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="n">ylim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">-4</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">),</span><span class="w"> </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span>
+<span class="w">       </span><span class="n">expand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.2</span><span class="p">,</span><span class="w"> </span><span class="n">asp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">bg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;lightgray&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">panel.first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">grid</span><span class="p">())</span>
+<span class="nf">symbols</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">circles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">inches</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="n">fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-biplot">
+<a class="reference internal image-reference" href="_images/biplot_crimes.svg"><img alt="_images/biplot_crimes.svg" height="500px" src="_images/biplot_crimes.svg" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text">Biplot of first two principal components for crime features by district (average yearly numbers per 100,000 for 2013-2022)</span><a class="headerlink" href="#fig-crime-biplot" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<span id="document-4.3_final_plots"></span><section class="tex2jax_ignore mathjax_ignore" id="final-plots-for-fire-crimes-car-thefts-burglary">
+<h3><span class="section-number">4.3. </span>Final Plots for Fire Crimes, Car Thefts, Burglary<a class="headerlink" href="#final-plots-for-fire-crimes-car-thefts-burglary" title="Permalink to this heading">#</a></h3>
+<p>After selecting fire crimes, car thefts and burglary as the most relevant features, because they seemed to be most different from the overall crime rate, curve plots of the same kind as plot <a class="reference internal" href="headline.html#fig-crime-dev-curves"><span class="std std-numref">Fig. 4.1</span></a> were created. The final result of the whole process are the graphics <a class="reference internal" href="headline.html#fig-crime-dev-curves"><span class="std std-numref">Fig. 4.1</span></a>, <a class="reference internal" href="#fig-crime-dev-curves-fire"><span class="std std-numref">Fig. 4.3</span></a>, <a class="reference internal" href="#fig-crime-dev-curves-car"><span class="std std-numref">Fig. 4.4</span></a> and <a class="reference internal" href="#fig-crime-dev-curves-burglary"><span class="std std-numref">Fig. 4.5</span></a>.</p>
+<div class="cell tag_hide-input tag_remove-output docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.colors</span> <span class="k">as</span> <span class="nn">mcolors</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">IPython</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+<span class="n">tab10</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;tab10&quot;</span><span class="p">)</span>
+<span class="n">set1</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;Set1&quot;</span><span class="p">)</span>
+<span class="n">qualitative_palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">([</span><span class="n">set1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;#000099&quot;</span><span class="p">,</span> <span class="n">set1</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;#ff66ff&quot;</span><span class="p">,</span> <span class="s2">&quot;#006600&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffcc00&quot;</span><span class="p">,</span> <span class="s2">&quot;#000000&quot;</span><span class="p">,</span> <span class="n">tab10</span><span class="p">[</span><span class="mi">9</span><span class="p">],</span> <span class="n">tab10</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">set1</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="s2">&quot;#00cc00&quot;</span><span class="p">,</span> <span class="s2">&quot;#660066&quot;</span><span class="p">])</span>
+
+<span class="n">bezirkskriminalitaet</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s2">&quot;../data/08_kriminalitaet_auf_bezirksebene_2013_bis_2022.pkl&quot;</span><span class="p">)</span>
+<span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;BEZ&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s1">&#39;LOR-Schlüssel (Bezirksregion)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">bezirkskriminalitaet</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Straftaten </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">:</span> <span class="s2">&quot;Overall crime rate&quot;</span><span class="p">,</span>
+                                                            <span class="s2">&quot;Branddelikte </span><span class="se">\n</span><span class="s2">-insgesamt-&quot;</span><span class="p">:</span> <span class="s2">&quot;Fire crimes&quot;</span><span class="p">,</span>
+                                                            <span class="s2">&quot;Diebstahl von Kraftwagen&quot;</span><span class="p">:</span> <span class="s2">&quot;Car theft&quot;</span><span class="p">,</span>
+                                                            <span class="s2">&quot;Wohnraum-</span><span class="se">\n</span><span class="s2">einbruch&quot;</span><span class="p">:</span> <span class="s2">&quot;Burglary&quot;</span><span class="p">})</span>
+
+<span class="c1"># Create a list of features to iterate over</span>
+<span class="n">features_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Overall crime rate&quot;</span><span class="p">,</span> <span class="s2">&quot;Fire crimes&quot;</span><span class="p">,</span> <span class="s2">&quot;Car theft&quot;</span><span class="p">,</span> <span class="s2">&quot;Burglary&quot;</span><span class="p">]</span>
+
+<span class="c1"># Create the categorical color palette with unique colors for each category</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">num_categories</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)</span>
+
+<span class="c1"># Create the subplots (4 rows, 1 column)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;top&#39;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">})</span>
+
+<span class="c1"># Iterate over the features and plot each on its respective subplot</span>
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">features_list</span><span class="p">):</span>
+    <span class="c1"># Convert the current feature column to integers</span>
+    <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    
+    <span class="c1"># Group the data by &quot;Bezeichnung (Bezirksregion)&quot; and &quot;Year&quot; and sum the values for the current feature</span>
+    <span class="n">grouped_data</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">,</span> <span class="s2">&quot;Year&quot;</span><span class="p">])[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+    <span class="c1"># Select the current subplot</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+    
+    <span class="c1"># Iterate over the unique values in the &quot;Bezeichnung (Bezirksregion)&quot; column</span>
+    <span class="k">for</span> <span class="n">category</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">qualitative_palette</span><span class="p">):</span>
+        <span class="c1"># Filter the data for the current category</span>
+        <span class="n">category_data</span> <span class="o">=</span> <span class="n">grouped_data</span><span class="p">[</span><span class="n">grouped_data</span><span class="p">[</span><span class="s2">&quot;Bezeichnung (Bezirksregion)&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">category</span><span class="p">]</span>
+
+        <span class="c1"># Plot the line for the current category on the current subplot</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">category_data</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">],</span> <span class="n">category_data</span><span class="p">[</span><span class="n">feature</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Set the subplot title, labels, and legend</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="s2"> per 100,000 residents&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Districts&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="c1"># Get all unique years in the data for the current subplot</span>
+    <span class="n">unique_years</span> <span class="o">=</span> <span class="n">bezirkskriminalitaet</span><span class="p">[</span><span class="s2">&quot;Year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+    <span class="c1"># Set the x-ticks to be all unique years for the current subplot</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">unique_years</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelbottom</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Disable scientific notation on the y-axis</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Set the background color to gray</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)</span>
+    <span class="c1"># Add a grid</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Temporal development (2013-2022) of numbers per 100,000 residents </span><span class="se">\n</span><span class="s1">of different kinds of crimes split by Berlin districts&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Adjust the layout</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<figure class="align-default" id="fig-crime-dev-curves-fire">
+<a class="reference internal image-reference" href="_images/fire_crimes.png"><img alt="_images/fire_crimes.png" src="_images/fire_crimes.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text">Temporal development (2013-2022) of fire crimes per 100,000 residents
+per Berlin districts - curves plot with custom colormap</span><a class="headerlink" href="#fig-crime-dev-curves-fire" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-crime-dev-curves-car">
+<a class="reference internal image-reference" href="_images/car_thefts.png"><img alt="_images/car_thefts.png" src="_images/car_thefts.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Temporal development (2013-2022) of car thefts per 100,000 residents
+per Berlin districts - curves plot with custom colormap</span><a class="headerlink" href="#fig-crime-dev-curves-car" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-crime-dev-curves-burglary">
+<a class="reference internal image-reference" href="_images/burglaries.png"><img alt="_images/burglaries.png" src="_images/burglaries.png" style="height: 600px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Temporal development (2013-2022) of burglaries per 100,000 residents
+per Berlin districts - curves plot with custom colormap</span><a class="headerlink" href="#fig-crime-dev-curves-burglary" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</div>
+</section>
+<span id="document-refs"></span><section class="tex2jax_ignore mathjax_ignore" id="references">
+<h2><span class="section-number">5. </span>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<p><a id="1">[1]</a>
+<strong>Berlin Open Data Portal</strong><br />
+<em>Direct Link [Last Accessed: 09 August 2023]:</em> <br>
+<a class="reference external" href="https://daten.berlin.de">https://daten.berlin.de</a></p>
+<p><a id="2">[2]</a>
+<strong>ColorHexa Colors Chart</strong><br />
+<em>Direct Link [Last Accessed: 09 August 2023]:</em> <br>
+<a class="reference external" href="https://www.colorhexa.com/web-safe-colors">https://www.colorhexa.com/web-safe-colors</a></p>
+</section>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-1_introduction">1. Introduction</a></li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2_first_attempt">2. First attempt: Heatmap</a><ul class="visible nav section-nav flex-column">
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2.1_adjust_colormap_range">2.1. Adjusting the Colormap Scale Range</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2.2_custom_colormap">2.2. Creating a Custom Colormap</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-2.3_disadvantages">2.3. Identifying Disadvantages</a></li>
+</ul>
+</li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-3_further_attempts">3. Further Attempts: Scatterplot and Barplot</a><ul class="visible nav section-nav flex-column">
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-3.1_second_attempt">3.1. Second Attempt: Scatterplot</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-3.2_third_attempt">3.2. Third Attempt: Barplots</a></li>
+</ul>
+</li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4_final_plot">4. Final Plot</a><ul class="visible nav section-nav flex-column">
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4.1_colormap_creation">4.1. Colormap Creation</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4.2_feature_selection">4.2. Feature selection: PCA</a></li>
+<li class="toctree-l2 toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-4.3_final_plots">4.3. Final Plots for Fire Crimes, Car Thefts, Burglary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="headline.html#document-refs">5. References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robert Wienröder
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
