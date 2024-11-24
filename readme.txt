@@ -1,5 +1,13 @@
-1) Unzip
-2) In a web browser, open the file index.html from the directory singlehtml
+Visualizing and analyzing crime rates in Berlin
+
+by Robert Wienröder
+
+To check out the project report, please download the whole repository and open singlehtml/index.html Code in Python and R
+
+Data sources:
+
+https://daten.berlin.de
+https://odis-berlin.de/ressourcen/
 
 In jupyter-execute, you find the jupyter notebooks with the code used to create the visualizations
 
